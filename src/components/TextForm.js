@@ -42,25 +42,25 @@ export default function TextForm(props) {
     }
 
 
-    const [text , setText ] = useState("Enter Text here") ;
+    const [text , setText ] = useState("") ;
     return (
     <>
-    <div className="container">
+    <div className="container" style={{color:props.mode === 'dark'?'white':'#042743'}}>
         <h1>{props.heading}</h1>
         <div className="mb-3">
-            <textarea className="form-control" id="myBox" value={text} onChange={handelOnChange} rows="8"></textarea>
+            <textarea className="form-control" id="myBox" value={text} onChange={handelOnChange} style={{backgroundColor:props.mode === 'light'?'white':'grey', color:props.mode === 'dark'?'white':'#042743'}} rows="8"></textarea>
         </div>
         <button className="btn btn-primary mx-2" onClick={handelUpClick}>Convert to Uppercase </button>
         <button className="btn btn-primary" onClick={handellowClick}>Convert to lowercase </button>
         <button className="btn btn-primary mx-2" onClick={handelClearClick}>Clear Text</button>
         <button className="btn btn-primary" onClick={speak} id='toggle'> Speak </button>
     </div>
-    <div className="container my-3">
+    <div className="container my-3" style={{color:props.mode === 'dark'?'white':'#042743'}}>
         <h1>Your Text Summary</h1>
         <p>{text.split(" ").length} Words, {text.length} characters</p>
         <p>{0.008 * text.split(" ").length} minutes read</p>
         <h2>Preview</h2>
-        <p>{text}</p>
+        <p>{text.length>0 ? text:"Enter Something in textbox above to Preview it here"}</p>
     </div>
     </>
   )
